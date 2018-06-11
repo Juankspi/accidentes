@@ -1,12 +1,17 @@
 const Accidentes = require('../models/accidentes.model.js');
-// Create and save a new Product
+// Crear un accidente
 exports.create = (req, res) => {
-console.log("Creating a product ... soon!");
+    console.log("Creating a product ... soon!");
 };
-// Retrieve and list all Products
+// Consultar todos los accidente
 exports.findAll = (req, res) => {
-console.log("Listing all products ... soon!");
+    console.log("Listing all products ... soon!");
 };
-// Get a single Product by its id
+// Consultar un accidente
 exports.findOne = (req, res) => {
-console.log("Getting a particular product ... soon!")};
+    console.log("Getting a particular product ... soon!")
+};
+// Editar un accidente
+exports.update = (req, res) => {
+    console.log("Updating a particular product ... soon!");
+};
