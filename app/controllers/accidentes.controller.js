@@ -64,18 +64,7 @@ exports.findOne = (req, res) => {
         });
 };
 
-//encontrar la ubicacion de un accidente
-/*exports.findLocation = (req, res) => {
-    Accidentes.find({_id: req.params.id},{location:1,_id:0})
-        .then(accidentes => {
-            res.status(200).send(accidentes[0]["location"]);
-            console.log(accidentes);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Hubo un error retornando los datos."
-            });
-        });
-};*/
+//Listar los 3 hospitales mas cercanos a un accidente
 
 exports.findLocation = (req, res) => {
     Accidentes.find({_id: req.params.id},{location:1,_id:0})
@@ -100,10 +89,6 @@ exports.findLocation = (req, res) => {
             });
         });
 };
-
-
-
-
 
 
 // Editar un accidente

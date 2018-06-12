@@ -42,27 +42,6 @@ exports.update = (req, res) => {
     console.log("Updating a particular product ... soon!");
 };
 
-//Listar el hospital mas cercano a un accidente
-
-exports.findHospitalByLocation = (req, res) => {
-    var ubicacion = Accidentes.find({_id: req.params.id},{location:1,_id:0})
-    Hospitales.find({
-        location: { $near: {
-                $geometry : {"type":"Point", "coordinates":[-75.50313234329224,5.071558550644998]}//ubicacion[0]["location"]
-                }
-            }
-        }
-     ).limit(1)
-        .then(hospitales => {
-            res.status(200).send(hospitales);
-            console.log(ubicacion);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Something wrong occurred while retrieving the records."
-            });
-        });
-};
-
 // Delete a Product by its id
 exports.delete = (req, res) => {
     console.log("Deleting a particular product ... soon!");
