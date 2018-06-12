@@ -7,8 +7,8 @@ module.exports = (app) => {
     app.get('/accidentes', accidentes.findAll);
     // Consultar un accidente
     app.get('/accidentes/:id', accidentes.findOne);
-    ////encontrar la ubicacion de un accidente
-    app.get('/accidentelocation/:id', accidentes.findLocation)
+    //Listar los 3 hospitales mas cercanos a un accidente
+    app.get('/accidentelocation/:id/hospitales', accidentes.findLocation)
     // Editar un accidente
     app.put('/accidentes/:id', accidentes.update);
 
@@ -22,8 +22,6 @@ module.exports = (app) => {
      app.get('/hospitales/:id', hospitales.findOne);
      // Update a Product by id
      app.put('/hospitales/:id', hospitales.update);
-     //Listar el hospital mas cercano a un accidente
-     app.get('/hospitales_ubicacion/:id', hospitales.findHospitalByLocation);
      // Delete a Product by id
      app.delete('/hospitales/:id', hospitales.delete);
 

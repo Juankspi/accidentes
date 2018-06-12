@@ -24,7 +24,7 @@ exports.create = (req, res) => {
             res.status(200).send(data);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Something wrong occurred while creating the record."
+                message: err.message || "Error al crear accidente."
             });
         });
 };
@@ -36,7 +36,7 @@ exports.findAll = (req, res) => {
             res.status(200).send(accidentes);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Something wrong occurred while retrieving the records."
+                message: err.message || "Hubo un error retornando los datos."
             });
         });
 };
@@ -47,39 +47,99 @@ exports.findOne = (req, res) => {
         .then(accidentes => {
             if (!accidentes) {
                 return res.status(404).send({
-                    message: "Accidente not found with id:" + req.params.id
+                    message: "No se encuentra accidente con ese id:" + req.params.id
                 });
             }
             res.status(200).send(accidentes);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Accidente not found with id:" + req.params.id
+                    message: "No se encuentra accidente con ese id:" + req.params.id
                 });
             }
             return res.status(500).send({
-                message: "Something wrong ocurred while retrieving the record with id:"
+                message: "Error al retornar accidentes con ese id:"
                     + req.params.id
             });
         });
 };
 
 //encontrar la ubicacion de un accidente
-exports.findLocation = (req, res) => {
+/*exports.findLocation = (req, res) => {
     Accidentes.find({_id: req.params.id},{location:1,_id:0})
         .then(accidentes => {
             res.status(200).send(accidentes[0]["location"]);
-            console.log(res);
+            console.log(accidentes);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Something wrong occurred while retrieving the records."
+                message: err.message || "Hubo un error retornando los datos."
+            });
+        });
+};*/
+
+exports.findLocation = (req, res) => {
+    Accidentes.find({_id: req.params.id},{location:1,_id:0})
+        .then(accidentes => {
+            Hospitales.find({
+                location: { $near: {
+                        $geometry : accidentes[0]["location"]
+                        }
+                    }
+                }
+             ).limit(3)
+                .then(hospitales => {
+                    res.status(200).send(hospitales);
+                }).catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Error al retornar valores."
+                    });
+                })
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Hubo un error retornando los datos."
             });
         });
 };
 
 
 
+
+
+
 // Editar un accidente
 exports.update = (req, res) => {
-    console.log("Updating a particular accidente ... soon!");
+    // Validate if the request's body is empty
+    // (does not include required data)
+    if (Object.keys(req.body).length === 0) {
+        return res.status(400).send({
+            message: "El accidente no puede ser vacio"
+        });
+    }
+    // Find the Product and update it with the request body data
+    Product.findByIdAndUpdate(req.params.id, {
+        tipo: req.body.tipo,
+        foto: req.body.foto || "Sin foto",
+        prioridad: req.body.prioridad,
+        estado: req.body.estado,
+        fecha: req.body.fecha || null,
+        location: req.body.location
+    }, { new: true })
+        .then(accidentes => {
+            if (!accidentes) {
+                return res.status(404).send({
+                    message: "No se encuentra accidente con el id:" + req.params.id
+                });
+            }
+            res.status(200).send(accidentes);
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "No se encuentra accidente con el id:" + req.params.id
+                });
+            }
+            return res.status(500).send({
+                message: "Something wrong ocurred while updating the record with id:" +
+                    req.params.id
+            });
+        });
 };
