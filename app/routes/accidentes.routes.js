@@ -1,13 +1,11 @@
 module.exports = (app) => {
     const accidentes = require('../controllers/accidentes.controller.js');
-    // Create a new Product
+    // Crear un accidente
     app.post('/accidentes', accidentes.create);
-    // List all accidentes
+    // Consultar todos los accidente
     app.get('/accidentes', accidentes.findAll);
-    // Get a single Product by id
+    // Consultar un accidente
     app.get('/accidentes/:id', accidentes.findOne);
-    // Update a Product by id
+    // Editar un accidente
     app.put('/accidentes/:id', accidentes.update);
-    // Delete a Product by id
-    app.delete('/accidentes/:id', accidentes.delete);
 }

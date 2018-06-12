@@ -2,18 +2,21 @@ const mongoose = require('mongoose');
 const AccidentesSchema = mongoose.Schema({
     tipo: {
         type: String,
-        index: true,
-        unique: true,
         required: true,
         trim: true,
         minlength: 4
     },
     foto: {
-        type: String
+        data: Buffer,
+        contentType: String
     },
     prioridad: {
         type: String,
-        minlength: 2
+        minlength: 20
+    },
+    estado: {
+        type: String,
+        minlength: 20
     },
     fecha: Date,
     location: {

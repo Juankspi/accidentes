@@ -16,6 +16,9 @@ app.use(bodyParser.json())
 // Listening server port
 var port = process.env.PORT || 3000;
 // Definicion de las rutas
+
+require('./app/routes/accidentes.routes.js')(app);
+
 app.get('/', (req, res) => {
     res.json({
         "message": "This is a JSON response to a HTTP GET request."
