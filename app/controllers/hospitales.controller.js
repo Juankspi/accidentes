@@ -16,7 +16,7 @@ exports.create = (req, res) => {
         telefono: req.body.telefono, 
         location: req.body.location
     });
-    console.log(hospital);
+    console.log(req.body.location);
     //Almacena el hospital en la base de datos
     hospital.save()
         .then(data => {
