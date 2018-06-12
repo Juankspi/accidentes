@@ -20,7 +20,7 @@ const HospitalesSchema = mongoose.Schema({
         trim: true
     },
     location: {
-        type: [Number], 
+        type: [String], 
         index: '2dsphere'
     }
 }, {
