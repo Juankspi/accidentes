@@ -11,19 +11,21 @@ const AccidentesSchema = mongoose.Schema({
         contentType: String
     },
     prioridad: {
-        type: String,
-        minlength: 20
+        type: String
     },
     estado: {
         type: String,
-        minlength: 20
+        required: true
     },
     fecha: Date,
     location: {
-        type: [Number], 
-        index: '2dsphere'
+        'type': { type: String },
+        coordinates: { type: [Number], default: [0, 0] }
     }
 }, {
         timestamps: true
     });
+
+AccidentesSchema.index({ location: '2dsphere' });
+
 module.exports = mongoose.model('Accidentes', AccidentesSchema);

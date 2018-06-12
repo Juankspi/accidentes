@@ -22,8 +22,8 @@ const HospitalesSchema = mongoose.Schema({
     //Verificar campo location
     // Se debe corregir el campo type.
     location: {
-        type: [String], 
-        index: '2dsphere'
+        type: {type: [String]}, 
+        coordinates: { type: [Number], default: [0, 0] }
     }
 }, {
         timestamps: true
