@@ -20,10 +20,12 @@ const HospitalesSchema = mongoose.Schema({
         trim: true
     },
     location: {
-        type: [Number], 
-        index: '2dsphere'
+        'type': { type: String },
+        coordinates: { type: [Number], default: [0, 0] }
     }
 }, {
         timestamps: true
     });
+    
+HospitalesSchema.index({ location: '2dsphere' });
 module.exports = mongoose.model('Hospitales', HospitalesSchema);
