@@ -31,10 +31,6 @@ app.get('/', (req, res) => {
     });
 });
 
-//ADICIONAR IMAGENES
-
-
-
 // Iniciar el servidor
 // Connect to the database
 mongoose.connect(dbConfig.url)

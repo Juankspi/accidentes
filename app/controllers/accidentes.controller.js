@@ -21,6 +21,7 @@ exports.create = (req, res) => {
     });
     accidentes.foto.data = fs.readFileSync(req.body.foto);
     accidentes.foto.contentType = 'image/png';
+    accidentes.foto.contentType = 'image/jpg';
     // Guardar el accidente en la base de datos
     accidentes.save()
         .then(data => {
