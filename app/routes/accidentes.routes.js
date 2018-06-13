@@ -12,11 +12,14 @@
 var router = require('express').Router();
 const accidentes = require('../controllers/accidentes.controller.js');
 // Crear un accidente
-router.post('/accidentes', accidentes.create);
+router.post('/', accidentes.create);
 // Consultar todos los accidentes
-router.get('/accidentes', accidentes.findAll);
+router.get('/', accidentes.findAll);
 // Consultar un accidente
-router.get('/accidentes/:id', accidentes.findOne);
+router.get('/:id', accidentes.findOne);
 // Editar un accidente
-//router.put('/accidentes/:id', accidentes.update);
+router.put('/:id', accidentes.update);
+// Consultar los 3 hospitales mas cercanos
+router.get("/:id/hospitales",accidentes.findLocation);
+
 module.exports = router;

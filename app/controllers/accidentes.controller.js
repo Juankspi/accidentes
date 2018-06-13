@@ -101,7 +101,7 @@ exports.update = (req, res) => {
         });
     }
     // Find the Product and update it with the request body data
-    Product.findByIdAndUpdate(req.params.id, {
+    Accidentes.findByIdAndUpdate(req.params.id, {
         tipo: req.body.tipo,
         foto: req.body.foto || "Sin foto",
         prioridad: req.body.prioridad,
