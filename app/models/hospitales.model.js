@@ -19,13 +19,14 @@ const HospitalesSchema = mongoose.Schema({
         type: String,
         trim: true
     },
+    //Verificar campo location
+    // Se debe corregir el campo type.
     location: {
-        'type': { type: String },
-        coordinates: { type: [Number], default: [0, 0] }
+        "type": {type: [String]}, 
+        coordinates : { type: [Number], default: [0, 0] }
     }
 }, {
         timestamps: true
     });
-    
 HospitalesSchema.index({ location: '2dsphere' });
 module.exports = mongoose.model('Hospitales', HospitalesSchema);

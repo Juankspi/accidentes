@@ -18,7 +18,11 @@ app.use(bodyParser.json())
 var port = process.env.PORT || 3000;
 // Definicion de las rutas
 
-require('./app/routes/accidentes.routes.js')(app);
+var hospitales = require('./app/routes/hospitales.routes.js');
+var accidentes = require('./app/routes/accidentes.routes.js');
+
+app.use("/hospitales", hospitales);
+app.use("/accidentes", accidentes);
 
 
 app.get('/', (req, res) => {
