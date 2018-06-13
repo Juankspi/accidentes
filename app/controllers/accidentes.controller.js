@@ -1,5 +1,6 @@
 const Accidentes = require('../models/accidentes.model.js');
 const Hospitales = require('../models/hospitales.model.js');
+const fs = require('fs');
 // Crear un accidente
 exports.create = (req, res) => {
     // Validate if the request's body is empty
@@ -18,6 +19,8 @@ exports.create = (req, res) => {
         fecha: req.body.fecha || null,
         location: req.body.location
     });
+    accidentes.foto.data = fs.readFileSync(req.body.foto);
+    accidentes.foto.contentType = 'image/png';
     // Guardar el accidente en la base de datos
     accidentes.save()
         .then(data => {

@@ -20,11 +20,16 @@ var port = process.env.PORT || 3000;
 
 require('./app/routes/accidentes.routes.js')(app);
 
+
 app.get('/', (req, res) => {
     res.json({
         "message": "This is a JSON response to a HTTP GET request."
     });
 });
+
+//ADICIONAR IMAGENES
+
+
 
 // Iniciar el servidor
 // Connect to the database
