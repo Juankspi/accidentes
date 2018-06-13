@@ -24,6 +24,7 @@ var accidentes = require('./app/routes/accidentes.routes.js');
 app.use("/hospitales", hospitales);
 app.use("/accidentes", accidentes);
 
+
 app.get('/', (req, res) => {
     res.json({
         "message": "This is a JSON response to a HTTP GET request."

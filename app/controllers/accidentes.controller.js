@@ -154,7 +154,7 @@ exports.update = (req, res) => {
                 });
             }
             return res.status(500).send({
-                message: "Something wrong ocurred while updating the record with id:" +
+                message: "Error al actualizar accidente con id:" +
                     req.params.id
             });
         });
