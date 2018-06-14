@@ -1,7 +1,7 @@
 const Accidentes = require('../models/accidentes.model.js');
 const Hospitales = require('../models/hospitales.model.js');
-const multer  = require('multer');
-const upload = multer({ dest: '../../uploads/' });
+//const multer  = require('multer');
+//const upload = multer({ dest: '../../uploads/' });
 
 var fs = require('fs');
 
